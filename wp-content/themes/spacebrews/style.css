@@ -1,0 +1,54 @@
+/*
+Theme Name: Spacebrews
+Theme URI: http://www.librafairy.com.com/
+Description: Developed by BVB for Spacebrews
+Version: 1
+Author: Brian Van Buren
+Author URI: http://www.open-your-mind.info.com/
+Tags: 
+
+	The CSS, XHTML and design is released under GPL:
+	http://www.opensource.org/licenses/gpl-license.php
+
+*/
+/* CSS Reset */
+#topnav{
+width:680px;
+text-align:right;
+float:right;
+padding:10px;
+}
+#menu-header-nav{
+height:50px;	
+}
+#menu-header-nav > .menu-item{
+float:left;
+list-style-type:none;
+width:110px;
+}
+#menu-header-nav .children{
+display:none;
+}
+#menu-header-nav .menu-item:hover .children{
+display:block;
+}
+#menu-header-nav .children .menu-item{
+display:block;
+}
+#menu-nav{
+margin-left:20px;
+}
+#menu-nav li{
+font-size:1.5em;
+margin-bottom:10px;
+}
+#menu-nav li:before{
+content:"\25BA \0020";
+}
+/* End Header Style */
+
+/* Forms */
+#li-2-1{
+display:none;
+}
+
