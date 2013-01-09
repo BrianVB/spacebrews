@@ -10,6 +10,7 @@ Template Name: Homepage
 
   <body class="opening hide-UI view-2D zoom-large ">
     <script src="//ajax.googleapis.com/ajax/libs/jquery/1.8.3/jquery.min.js"></script>
+    <link rel="stylesheet" type="text/css" href="/wp-content/themes/spacebrews/style.css" />
     <div id="navbar">
       <h1>Space Craft Brewing Company</h1>
     </div>
