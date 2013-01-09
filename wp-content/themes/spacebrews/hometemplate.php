@@ -8,10 +8,9 @@ Template Name: Homepage
 */
 ?>
 
-  <body class="opening hide-UI view-2D zoom-large "> <!-- data-close controls-close"> -->
+  <body class="opening hide-UI view-2D zoom-large ">
     <script src="//ajax.googleapis.com/ajax/libs/jquery/1.8.3/jquery.min.js"></script>
     <div id="navbar">
-      <a id="toggle-data" href="#data"><i class="icon-data"></i>Data</a>
       <h1>3D CSS Solar System</h1>
     </div>
     <div id="data">
@@ -66,7 +65,7 @@ Template Name: Homepage
               <div class="planet">
                 <dl class="infos">
                   <dt>About</dt>
-                  <dd><span></span></dd>
+                  <dd><span>About</span></dd>
                 </dl>
               </div>
             </div>
@@ -76,7 +75,7 @@ Template Name: Homepage
               <div class="planet">
                 <dl class="infos">
                   <dt>The Spacebrews</dt>
-                  <dd><span></span></dd>
+                  <dd><span>The most delicious brews in the universe</span></dd>
                 </dl>
               </div>
             </div>
@@ -87,7 +86,7 @@ Template Name: Homepage
                 <div class="ring"></div>
                 <dl class="infos">
                   <dt>Blog</dt>
-                  <dd><span></span></dd>
+                  <dd><span>News</span></dd>
                 </dl>
               </div>
             </div>
@@ -97,7 +96,7 @@ Template Name: Homepage
               <div class="planet">
                 <dl class="infos">
                   <dt>Store</dt>
-                  <dd><span></span></dd>
+                  <dd><span>Buy our stuff!</span></dd>
                 </dl>
               </div>
             </div>
@@ -107,7 +106,7 @@ Template Name: Homepage
               <div class="planet">
                 <dl class="infos">
                   <dt>Contact</dt>
-                  <dd><span></span></dd>
+                  <dd><span>Phone spacebrews</span></dd>
                 </dl>
               </div>
             </div>
@@ -115,7 +114,7 @@ Template Name: Homepage
           <div id="home">
             <dl class="infos">
               <dt>home</dt>
-              <dd><span></span></dd>
+              <dd><span>Get back to where you once belong</span></dd>
             </dl>
           </div>
         </div>
@@ -590,40 +589,6 @@ body {
   height: 210em;
   margin-top: -105em;
   margin-left: -105em; }
-
-
-/* --------------------------------------------------------------------------- text infos data */
-/* --------------------------------------------------------------------------- speed */
-.set-speed dl.infos dd span:after {
-  content: 'Orbit Velocity'; }
-
-.set-speed #home dl.infos dd:after {
-  content: '0 km/h'; }
-
-.set-speed #mercury dl.infos dd:after {
-  content: '170,503 km/h'; }
-
-.set-speed #venus dl.infos dd:after {
-  content: '126,074 km/h'; }
-
-.set-speed #earth dl.infos dd:after {
-  content: '107,218 km/h'; }
-
-.set-speed #About dl.infos dd:after {
-  content: '86,677 km/h'; }
-
-.set-speed #spacebrews dl.infos dd:after {
-  content: '47,002 km/h'; }
-
-.set-speed #blog dl.infos dd:after {
-  content: '34,701 km/h'; }
-
-.set-speed #store dl.infos dd:after {
-  content: '24,477 km/h'; }
-
-.set-speed #contact dl.infos dd:after {
-  content: '19,566 km/h'; }
-
 
 /* --------------------------------------------------------------------------- planets starting position and lighting effect */
 /* --------------------------------------------------------------------------- mercury ; pos: Top */
@@ -1210,22 +1175,13 @@ dl.infos:before {
 dl.infos dt {
   position: absolute;
   left: 50px;
-  margin-bottom: 26px;
-  bottom: 30px;
-  color: #FFF;
-  font-size: 14px;
-  text-shadow: 1px 1px 2px black; }
-
-dl.infos dd:after {
-  position: absolute;
-  left: 50px;
   bottom: 30px;
   width: 300px;
   color: #FFF;
   font-size: 22px;
   text-shadow: 1px 1px 2px black; }
 
-dl.infos dd span:after {
+dl.infos dd span {
   position: absolute;
   left: 50px;
   bottom: 14px;
