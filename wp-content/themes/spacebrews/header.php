@@ -5,7 +5,7 @@
 */
 ?>
 <!DOCTYPE html>
-<html xmlns="http://www.w3.org/1999/xhtml" <?php language_attributes(); ?>>
+<html xmlns="http://www.w3.org/1999/xhtml" lang="en-US">
 <head profile="http://gmpg.org/xfn/11">
 <title><?php sb_the_title(); ?></title>
 <meta name="description" content="<?php sb_the_meta_desc(); ?>" />
@@ -23,8 +23,10 @@
 
 </head>
 
-<body class="opening hide-UI view-2D zoom-large " <?php // body_class(); ?>>
+<body <?php body_class(); ?>>
 
 	<div id="navbar">
 	  <h1>Space Craft Brewing Company</h1>
-	</div>  
+	</div>
+
+	<div id="universe" class="scale-stretched">

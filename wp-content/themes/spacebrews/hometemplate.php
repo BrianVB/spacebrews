@@ -9,7 +9,6 @@ Template Name: Homepage
 
 get_header(); 
 ?>
-    <div id="universe" class="scale-stretched">
       <div id="galaxy">
         <div id="solar-system">
           <div id="mercury" class="orbit">
@@ -86,13 +85,37 @@ get_header();
               </div>
             </div>
           </div>
-          <div id="home">
+          <div id="homepage">
             <dl class="infos">
-              <dt>home</dt>
+              <dt>Spa</dt>
               <dd><span>Get back to where you once belong</span></dd>
             </dl>
           </div>
         </div>
       </div>
-    </div>
+      <script type="text/javascript">
+      $(window).load(function(){
+
+        var body = $("body"),
+          universe = $("#universe"),
+          solarsys = $("#solar-system");
+
+        var init = function() {
+          body.removeClass('view-2D opening').addClass("view-3D").delay(2000).queue(function() {
+            $(this).removeClass('hide-UI').addClass("set-speed");
+            $(this).dequeue();
+          });
+        };
+
+        $("#data a").hover(function(e) {
+          var ref = $(this).attr("class");
+          solarsys.removeClass().addClass(ref);
+          $(this).parent().find('a').removeClass('active');
+          $(this).addClass('active');
+        });
+
+        init();
+
+      });
+      </script>
   <?php get_footer(); ?>

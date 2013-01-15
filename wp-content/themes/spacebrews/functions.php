@@ -460,4 +460,15 @@ function cloneRole()
     $fairy = $wp_roles->add_role('fairy', 'Fairy', $editor->capabilities);
     $fairy->add_cap( 'edit_theme_options' );
 }
+
+add_filter('body_class','sb_body_classes');
+function sb_body_classes($classes) {
+	if(is_front_page()){
+		$classes[] = 'opening';
+		$classes[] = 'hide-UI';
+		$classes[] = 'view-2D';
+		$classes[] = 'zoom-large';
+	}
+	return $classes;
+}
 ?>
