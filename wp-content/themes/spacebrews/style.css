@@ -188,7 +188,7 @@ body {
 #moon {
   z-index: 7; }
 
-#About {
+#about {
   z-index: 6; }
 
 #spacebrews {
@@ -361,9 +361,9 @@ body {
   animation-duration: 0.89764s;
   -webkit-animation-duration: 0.89764s; }
 
-#About .pos,
-#About .planet,
-#About.orbit {
+#about .pos,
+#about .planet,
+#about.orbit {
   animation-duration: 22.57017s;
   -webkit-animation-duration: 22.57017s; }
 
@@ -409,7 +409,7 @@ body {
 .scale-stretched #earth .moon {
   font-size: 1.2em; }
 
-.scale-stretched #About .planet {
+.scale-stretched #about .planet {
   font-size: 2.9em; }
 
 .scale-stretched #spacebrews .planet {
@@ -449,7 +449,7 @@ body {
   margin-top: -3em;
   margin-left: -3em; }
 
-.scale-stretched #About.orbit {
+.scale-stretched #about.orbit {
   width: 72em;
   height: 72em;
   margin-top: -36em;
@@ -678,15 +678,15 @@ body {
   top: 50%; }
 
 /* --------------------------------------------------------------------------- About ; pos: Bottom */
-#About .pos {
+#about .pos {
   left: 50%;
   top: 100%; }
 
-#About .planet {
-  animation-name: shadow-About;
-  -webkit-animation-name: shadow-About; }
+#about .planet {
+  animation-name: shadow-about;
+  -webkit-animation-name: shadow-about; }
 
-@keyframes shadow-About {
+@keyframes shadow-about {
   0% {
     box-shadow: inset -18px -10px 10px rgba(0, 0, 0, 0.5);
     /* BOTTOM */ }
@@ -711,7 +711,7 @@ body {
     box-shadow: inset -18px -10px 10px rgba(0, 0, 0, 0.5);
     /* BOTTOM */ } }
 
-@-webkit-keyframes shadow-About {
+@-webkit-keyframes shadow-about {
   0% {
     box-shadow: inset -18px -10px 10px rgba(0, 0, 0, 0.5);
     /* BOTTOM */ }
@@ -736,8 +736,8 @@ body {
     box-shadow: inset -18px -10px 10px rgba(0, 0, 0, 0.5);
     /* BOTTOM */ } }
 
-.scaled.view-2D #About .planet,
-.scaled.view-3D #About .planet {
+.scaled.view-2D #about .planet,
+.scaled.view-3D #about .planet {
   box-shadow: inset -4px 0 2px rgba(0, 0, 0, 0.5);
   /* RIGHT */ }
 
@@ -1083,7 +1083,7 @@ dl.infos dd span {
 .mercury #mercury .infos,
 .venus #venus .infos,
 .earth #earth .infos,
-.About #About .infos,
+.about #about .infos,
 .spacebrews #spacebrews .infos,
 .blog #blog .infos,
 .store #store .infos,
@@ -1096,7 +1096,7 @@ dl.infos dd span {
 .mercury #mercury.orbit,
 .venus #venus.orbit,
 .earth #earth.orbit,
-.About #About.orbit,
+.about #about.orbit,
 .spacebrews #spacebrews.orbit,
 .blog #blog.orbit,
 .store #store.orbit,
@@ -1282,7 +1282,7 @@ body {
 #earth .moon {
   background-color: white; }
 
-#About .planet {
+#about .planet {
   background-image: url(data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAABoAAAAaCAMAAACelLz8AAAABGdBTUEAALGPC/xhBQAAAGBQTFRFsW89lWA2jVwzsm8+qGo72oVJrW08h1gxlWA15IpMrW09jlw0l2E2nGM3v3ZC3YdK3odKyHtE75BP8JFQ8JFQ8JFQ8JFQ8JFQw3hD8JFQ8JFQ8JFQ8JFQ8JFQ8JFQAAAAe3ooYQAAACB0Uk5Tk0+hrcTz6g7P5tkiYurz49bk79XR3vvm2PH26ezi2QCQ4vSgAAABm0lEQVQoz1VSWXaEMAzLLAw7ZHMSx0vvf8uaTtvX+icQYSRbch/vGrf7ftV0v43fV+59bNP+Oo6jtXAs0/YHWg1o4TxnqyG05bn+QOt0AUIRKWVV39qyvqF1f4VTFSqiZgWuerarz6D7KwyoqkI19k5UFYfjeUHbdJzEkLQS9cLCSELDsX24cVoCVYYMHXsphQk0Aw2v0W17OCv2CPwFIWnSBDAfmzOmSt0KmZhj1ZwERLU5N72GwsyIREwCKZtIsAe/uL3NpapW42ciMTWitXI8g9uDj/aCAEZoaqRHtf8ZmduPFAtW1kz2BWntXQRUo0FhTrVcKxLTZmNbi7Fd0NR8Vhsz5x6jZMHIrJrS3Nx98WAQ5lyJsXdGGxs0eeduS5Brs1+y2dZRe0EBajc3LuaHEKRks8qFIYrC0EZb79KM31qUbCO9l44mJWyXKY9mbMnkJzAeo0Ni/3hb+WynqDGkDJHNa/Okrd8BWJpPag1gHpdO5vL6G5tnC15rRBaI6sNj/Ru25Wjez3E+LTTbvxxaRB/PdtVj+4noJ91nOp3NTB6wAAAAAElFTkSuQmCC); }
 
 #spacebrews .planet {

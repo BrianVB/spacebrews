@@ -35,7 +35,7 @@ get_header();
               </div>
             </div>
           </div>
-          <div id="About" class="orbit">
+          <div id="about" class="orbit">
             <div class="pos">
               <div class="planet">
                 <dl class="infos">
