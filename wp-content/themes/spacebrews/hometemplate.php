@@ -100,6 +100,14 @@ get_header();
           universe = $("#universe"),
           solarsys = $("#solar-system");
 
+        var nav_map = [];
+        nav_map['menu-item-47'] = 'homepage';
+        nav_map['menu-item-48'] = 'about';
+        nav_map['menu-item-49'] = 'spacebrews';
+        nav_map['menu-item-50'] = 'blog';
+        nav_map['menu-item-51'] = 'store';
+        nav_map['menu-item-52'] = 'contact';
+
         var init = function() {
           body.removeClass('view-2D opening').addClass("view-3D").delay(2000).queue(function() {
             $(this).removeClass('hide-UI').addClass("set-speed");
@@ -107,10 +115,10 @@ get_header();
           });
         };
 
-        $("#data a").hover(function(e) {
-          var ref = $(this).attr("class");
-          solarsys.removeClass().addClass(ref);
-          $(this).parent().find('a').removeClass('active');
+        $("#main-nav a").hover(function(e) {
+          var ref = $(this).parent().attr("id");
+          solarsys.removeClass().addClass(nav_map[ref]);
+          $(this).parent().parent().find('a').removeClass('active');
           $(this).addClass('active');
         });
 

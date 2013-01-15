@@ -1091,13 +1091,13 @@ dl.infos dd span {
   border: 1px solid rgba(255, 255, 255, 0.8); }
 
 .hide-UI h1,
-.hide-UI #data,
+.hide-UI #main-nav,
 .hide-UI dl.infos /*,
  .hide-UI #controls  */{
   opacity: 0!important;
   margin-top: -30px; }
 
-.hide-UI #data {
+.hide-UI #main-nav {
   margin-bottom: -30px; }
 
 .hide-UI .orbit {
@@ -1155,7 +1155,7 @@ dl.infos dd span {
 .opening .ring,
 .opening .infos,
 .opening h1,
-.opening #data,
+.opening #main-nav,
 .opening dl.infos,
 .opening #controls {
   transition-duration: 0s;
@@ -1167,7 +1167,7 @@ dl.infos dd span {
   transition-delay: 0s;
   -webkit-transition-delay: 0s; }
 
-h1, #data, #controls {
+h1, #main-nav, #controls {
   transition-property: opacity, margin;
   transition-duration: .8s;
   transition-timing-function: ease-in-out;
@@ -1178,7 +1178,7 @@ h1 {
   transition-delay: .35s;
   -webkit-transition-delay: .35s; }
 
-#data {
+#main-nav {
   transition-delay: .7s;
   -webkit-transition-delay: .7s; }
 
@@ -1240,3 +1240,5 @@ h1 {
 @media screen and (min-width: 1300px) {
   #universe {
     font-size: 100%; } }
+
+    #header, #main-nav { background: transparent; }

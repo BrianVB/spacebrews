@@ -25,7 +25,7 @@
 
 <body <?php body_class(); ?>>
 
-	<div id="navbar">
+	<div id="header">
 	  <h1>Space Craft Brewing Company</h1>
 	</div>
 
