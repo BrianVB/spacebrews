@@ -25,7 +25,6 @@
 
 <body class="opening hide-UI view-2D zoom-large " <?php // body_class(); ?>>
 
-<link rel="stylesheet" type="text/css" href="/wp-content/themes/spacebrews/style.css" />
-<div id="navbar">
-  <h1>Space Craft Brewing Company</h1>
-</div>  
+	<div id="navbar">
+	  <h1>Space Craft Brewing Company</h1>
+	</div>  
