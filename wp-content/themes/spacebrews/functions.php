@@ -471,4 +471,12 @@ function sb_body_classes($classes) {
 	}
 	return $classes;
 }
+
+add_action( 'wp_enqueue_scripts', 'sb_add_stylesheets' );
+function sb_add_stylesheets() {
+    if(is_front_page()){
+    	wp_register_style( 'solar-system-style', '/wp-content/themes/spacebrews/solar-system.css');
+    	wp_enqueue_style( 'solar-system-style' );
+    }
+}
 ?>
