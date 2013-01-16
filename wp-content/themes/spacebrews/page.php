@@ -9,7 +9,6 @@ get_header();
 
 <div id="page">
     <div id="page-container" class="container_12">
-        <?php get_sidebar(); ?>
         <div class="grid_8">
         <?php if (have_posts()) : while (have_posts()) : the_post(); ?>
             <div class="post" id="post-<?php the_ID(); ?>">
@@ -22,6 +21,7 @@ get_header();
         <?php endwhile; endif; ?>
         <?php edit_post_link('Edit this entry.', '<p>', '</p>'); ?>
         </div>
+        <?php get_sidebar(); ?>
     </div>
 </div>
 <?php get_footer(); ?>
