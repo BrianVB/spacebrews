@@ -37,6 +37,7 @@ get_header();
           <div id="about" class="orbit">
             <div class="pos">
               <div class="planet">
+                <a href="/about-us/"></a>
                 <dl class="infos">
                   <dt>About</dt>
                   <dd><span>About</span></dd>
@@ -47,6 +48,7 @@ get_header();
           <div id="spacebrews" class="orbit">
             <div class="pos">
               <div class="planet">
+                <a href="/the-spacebrews/"></a>
                 <dl class="infos">
                   <dt>The Spacebrews</dt>
                   <dd><span>The most delicious brews in the universe</span></dd>
@@ -57,6 +59,7 @@ get_header();
           <div id="blog" class="orbit">
             <div class="pos">
               <div class="planet">
+                <a href="/blog/"></a>
                 <div class="ring"></div>
                 <dl class="infos">
                   <dt>Blog</dt>
@@ -68,6 +71,7 @@ get_header();
           <div id="store" class="orbit">
             <div class="pos">
               <div class="planet">
+                <a href="/store/"></a>
                 <dl class="infos">
                   <dt>Store</dt>
                   <dd><span>Buy our stuff!</span></dd>
@@ -78,6 +82,7 @@ get_header();
           <div id="contact" class="orbit">
             <div class="pos">
               <div class="planet">
+                <a href="/contact-us/"></a>
                 <dl class="infos">
                   <dt>Contact</dt>
                   <dd><span>Phone spacebrews</span></dd>
@@ -87,8 +92,8 @@ get_header();
           </div>
           <div id="homepage">
             <dl class="infos">
-              <dt>Spa</dt>
-              <dd><span>Get back to where you once belong</span></dd>
+              <dt>Spacebrews</dt>
+              <dd><span>Clicking this should launch some viral video or crazy thing we can come up with.</span></dd>
             </dl>
           </div>
         </div>
@@ -97,7 +102,6 @@ get_header();
       $(window).load(function(){
 
         var body = $("body"),
-          universe = $("#universe"),
           solarsys = $("#solar-system");
 
         var nav_map = [];
@@ -121,6 +125,14 @@ get_header();
           $(this).parent().parent().find('a').removeClass('active');
           $(this).addClass('active');
         });
+
+        $(".planet a").hover(function(e) {
+          var ref = $(this).parent().parent().parent().attr("id");
+          console.log(ref);
+          console.log(nav_map[ref]);
+          solarsys.removeClass().addClass(ref);
+          $(this).parent().parent().find('a').removeClass('active');
+        });        
 
         init();
 
