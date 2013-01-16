@@ -125,11 +125,9 @@ function sidebar_details(){
 	$sidebar = array();
 	$sidebar['name'] = get_post_meta($post->ID, 'sidebar', true); 
 	if(!$sidebar['name']){
-		if(is_page()){
+		if(is_page($post->ID)){
 			$sidebar['name'] = 'Page Sidebar'; 
-		} if(is_single()){
-			$sidebar['name'] = 'Post Sidebar';
-		} if(is_home()){
+		} if(is_single($post->ID) || is_home($post->ID)){
 			$sidebar['name'] = 'Blog Sidebar';
 		} else {
 			$sidebar['name'] = 'Default Sidebar';
@@ -145,178 +143,110 @@ function sidebar_details(){
 
 
 
-/****************************************************************
-	Add a theme options page to the admin area
+/*************************************************
+	Create a custom post type for our delicous beers!
 ****************************************************************/
-$themename = "Spacebrews";
-$shortname = "sb";
-$dir = get_bloginfo ( 'template_directory' );
 
-// --- Options that we will have on the admin page
-$options = array (
-    array(  "name" => 'jQuery Replaced',
-		    "desc" => 'The newest version of the jQuery library has been copied and pasted into the top of global.js.',
-            "id" => $shortname."_jquery_replaced",
-            "type" => "checkbox",
-            "std" => "false"
-        ),
-    array(  "name" => 'Htaccess Updated',
-		    "desc" => 'The .htacess file has been updated to do rewrites for auto-versioning of the stylesheet and javascripts',
-            "id" => $shortname."_htaccess_updated",
-            "type" => "checkbox",
-            "std" => "false"
-        ),
-	array(  "name" => "Remove auto &lt;p&gt; tag formatting sitewide?",
-		"id" => $shortname."_remove_autoformat",
-		"type" => "checkbox",
-		"std" => "false"
-		)
-	);
-
-// --- If the option is not in the database it sets the value for the variable to your default value
-foreach ($options as $value) {
-    if (get_option( $value['id'] ) === FALSE) { 
-		$$value['id'] = $value['std']; 
-	} else { 
-		$$value['id'] = get_option( $value['id'] ); 
-	} 
+add_action('init', 'register_brews');
+function register_brews(){
+  $labels = array(
+    'name' => _x('Brews', 'post type general name'),
+    'singular_name' => _x('Brew', 'post type singular name'),
+	'add_new' => _x( 'Add New', 'add' ),
+	'add_new_item' => __( 'Add New Brew' ),
+	'edit_item' => __( 'Edit Brew' ),
+	'new_item' => __( 'New Brew' ),
+	'view_item' => __( 'View Brew' ),
+	'search_items' => __( 'Search Brews' ),
+	'not_found' =>  __( 'No Brew Found' ),
+	'not_found_in_trash' => __( 'No Brew Found in trash' ),
+	'parent_item_colon' => ''    
+  );
+  $args = array(
+    'labels' => $labels,
+    'public' => true,
+    'query_var' => true,
+    'rewrite' => true,
+	'supports' => array('title', 'editor', 'thumbnail', 'page-attributes', 'excerpt','comments'),
+    'menu_position' => 20,
+	'register_meta_box_cb' => 'add_brew_metaboxes',
+	'taxonomies' => array('hops')
+  ); 
+  register_post_type('brew',$args);
 }
-    
-    
-function mytheme_add_admin() {
-    global $themename, $shortname, $options;
-    if ( isset($_GET['page']) && $_GET['page'] == basename(__FILE__) ) {
-        if ( isset($_REQUEST['action']) && 'save' == $_REQUEST['action'] ) {
-                foreach ($options as $value) {
-                    update_option( $value['id'], $_REQUEST[ $value['id'] ] ); 
-				}
-                foreach ($options as $value) {
-                    if( isset( $_REQUEST[ $value['id'] ] ) ) { 
-						update_option( $value['id'], $_REQUEST[ $value['id'] ]  );
-					} else { 
-						delete_option( $value['id'] ); 
-					} 
-				}
-                wp_redirect("themes.php?page=functions.php&saved=true");
-                die;
-        } else if( isset($_REQUEST['action']) && 'reset' == $_REQUEST['action'] ) {
-            foreach ($options as $value) {
-                delete_option( $value['id'] ); 
-			}
-            header("Location: themes.php?page=functions.php&reset=true");
-            die;
-        }
+// --- add the meta box for the abv to the brews
+function add_brew_metaboxes() {
+    add_meta_box('brew_meta', 'Alcohol by volume', 'brew_meta_html', 'brew', 'advanced', 'high');
+}
+
+// --- Put form html into the abv meta box
+function brew_meta_html() {
+    global $post;
+ 
+    // Noncename needed to verify where the data originated
+    echo '<input type="hidden" name="meta_noncename" id="meta_noncename" value="' .
+    wp_create_nonce( plugin_basename(__FILE__) ) . '" />';
+ 
+    // Get the abv data if its already been entered
+    $abv = get_post_meta($post->ID, '_abv', true);
+ 
+    // Echo out the field
+    echo '<input type="text" name="_abv" value="' . $abv  . '" class="widefat" placeholder="e.g. &ldquo;7.5&rdquo;" />';
+
+}
+
+
+add_action('save_post', 'save_brew_meta', 1, 2); // save the custom fields
+// Save the abv 
+function save_brew_meta($post_id, $post) {
+ 
+    // verify this came from the our screen and with proper authorization,
+    // because save_post can be triggered at other times
+    if ( !wp_verify_nonce( $_POST['abvmeta_noncename'], plugin_basename(__FILE__) )) {
+		return $post->ID;
     }
-    // --- calls our function below
-	add_theme_page($themename." Options", "Theme Options", 'edit_themes', basename(__FILE__), 'mytheme_admin'); 
+ 
+    // Is the user allowed to edit the post or page?
+    if ( !current_user_can( 'edit_post', $post->ID )){
+        return $post->ID;
+	}
+ 
+    // OK, we're authenticated: we need to find and save the data
+    // We'll put it into an array to make it easier to loop though.
+    $brew_meta['_abv'] = $_POST['_abv'];
+ 
+    // Add abv value as a custom field
+    foreach ($brew_meta as $key => $value) { // Cycle through the $events_meta array!
+        if( $post->post_type == 'revision' ) return; // Don't store custom data twice
+        $value = implode(',', (array)$value); // If $value is an array, make it a CSV (unlikely)
+        if(get_post_meta($post->ID, $key, FALSE)) { // If the custom field already has a value
+            update_post_meta($post->ID, $key, $value);
+        } else { // If the custom field doesn't have a value
+            add_post_meta($post->ID, $key, $value);
+        }
+        if(!$value) delete_post_meta($post->ID, $key); // Delete if blank
+    }
+ 
 }
 
 
-
-
-
-
-
-// --- This is the form that is put on the admin theme page so that we can choose the options (called in add_theme_page above)
-function mytheme_admin() {
-    global $themename, $shortname, $options;
-    if ( isset($_REQUEST['saved']) && $_REQUEST['saved'] ) {
-		echo '<div id="message" class="updated fade"><p><strong>'.$themename.' settings saved.</strong></p></div>';
-	}
-    if ( isset($_REQUEST['reset']) && $_REQUEST['reset']) {
-		echo '<div id="message" class="updated fade"><p><strong>'.$themename.' settings reset.</strong></p></div>';
-	}
-    
-?>
-<div class="wrap">
-<h2><?php echo $themename; ?> <?php _e('settings', 'default'); ?></h2>
-
-<form method="post">
-
-<table class="optiontable">
-
-<?php 
-
-foreach ($options as $value) { 
-	
-	if ($value['type'] == "text") { ?>
-			
-        <tr valign="top"> 
-            <th scope="row"><?php echo $value['name']; ?>:</th>
-            <td>
-                <input name="<?php echo $value['id']; ?>" id="<?php echo $value['id']; ?>" type="<?php echo $value['type']; ?>" value="<?php if ( get_option( $value['id'] ) != "") { echo get_option( $value['id'] ); } else { echo $value['std']; } ?>" />
-            </td>
-        </tr>
-	
-	<?php
-	} elseif ($value['type'] == "select") { 
-	?>
-	
-        <tr valign="top"> 
-            <th scope="row"><?php echo $value['name']; ?>:</th>
-            <td>
-                <select name="<?php echo $value['id']; ?>" id="<?php echo $value['id']; ?>">
-                    <?php foreach ($value['options'] as $key => $val) { ?>
-                    <option value="<?php echo $val; ?>"<?php if (get_option ( $value['id'] )) {if ( get_option( $value['id'] ) == $val) { echo ' selected="selected"'; }} elseif ($val == $value['std']) { echo ' selected="selected"'; } ?>><?php echo $key; ?></option>
-                    <?php } ?>
-                </select>
-            </td>
-        </tr>
-	
-	<?php 
-	} elseif ($value['type'] == "textarea") { 
-	?>
-	
-        <tr valign="top"> 
-            <th scope="row"><?php echo $value['name']; ?>:</th>
-            <td>
-                <textarea cols="100" rows="10" name="<?php echo $value['id']; ?>" id="<?php echo $value['id']; ?>"><?php if ( get_option( $value['id'] ) != "") { echo get_option( $value['id'] ); } else { echo $value['std']; } ?></textarea>
-            </td>
-        </tr>
-	
-	
-	<?php 
-	} elseif ($value['type'] == "checkbox") { 
-	?>
-	
-        <tr valign="top"> 
-            <th scope="row"><?php echo $value['name']; ?>: </th>
-            <td>
-            	<?php
-				if(get_option($value['id']) == true){
-					$checked = 'checked="checked"'; 
-				} else { 
-					$checked = '';
-				} 
-				?>
-                <input type="checkbox" name="<?php echo $value['id']; ?>" id="<?php echo $value['id']; ?>" value="true" <?php echo $checked; ?> />
-            </td>
-        </tr>
-	
-	
-	<?php 
-	} 
+function add_sb_taxonomies() {
+    // Add new "Locations" taxonomy to Posts
+    register_taxonomy('hops', 'brew', array(
+        'labels' => array(
+            'name' => _x( 'Hops', 'taxonomy general name' ),
+            'singular_name' => _x( 'Hop', 'taxonomy singular name' ),
+            'search_items' =>  __( 'Search Hops' ),
+            'all_items' => __( 'All Hops' ),
+            'edit_item' => __( 'Edit Hop' ),
+            'update_item' => __( 'Update Hop' ),
+            'add_new_item' => __( 'Add New Hop' ),
+            'new_item_name' => __( 'New Hop Name' ),
+            'menu_name' => __( 'Hops' ),
+        ),
+    ));
 }
-?>
-
-</table>
-
-<p class="submit">
-<input name="save" type="submit" value="Save changes" />
-<input type="hidden" name="action" value="save" />
-</p>
-</form>
-<form method="post">
-<p class="submit">
-<input name="reset" type="submit" value="Reset" />
-<input type="hidden" name="action" value="reset" />
-</p>
-</form>
-
-<?php
-} // --- End function mytheme_admin
-add_action('admin_menu', 'mytheme_add_admin');  // --- Call to actually add the admin menu page
-
+add_action( 'init', 'add_sb_taxonomies', 0 );
 
 /******************************************************************
 	Start support having post thumbnails for your post images
@@ -331,16 +261,6 @@ if ( function_exists( 'add_theme_support' ) ) { // Added in 2.9
 	Add excerpt support for pages for meta desc if empty
 *******************************************************************/
 add_post_type_support('page', 'excerpt');
-
-/******************************************************************
-	If the option is checked in theme admins, stop auto formatting
-*******************************************************************/
-if(get_option('accel_remove_autoformat') == true){
-	$filters=array('term_description', 'the_content', 'the_excerpt');
-	foreach ( $filters as $filter ) {
-		remove_filter($filter, 'wpautop');
-	}
-}
 
 /******************************************************************
 	Add a menu to the top navigation area
@@ -461,6 +381,7 @@ function cloneRole()
     $fairy->add_cap( 'edit_theme_options' );
 }
 
+// --- Used to add the appropriate body classes to the home page to get the animation to work
 add_filter('body_class','sb_body_classes');
 function sb_body_classes($classes) {
 	if(is_front_page()){
@@ -479,4 +400,5 @@ function sb_add_stylesheets() {
     	wp_enqueue_style( 'solar-system-style' );
     }
 }
+
 ?>
