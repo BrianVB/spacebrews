@@ -1096,7 +1096,7 @@ dl.infos dd span {
 .contact #contact.orbit {
   border: 1px solid rgba(255, 255, 255, 0.8); }
 
-.hide-UI h1,
+.hide-UI h4,
 .hide-UI #main-nav,
 .hide-UI dl.infos /*,
  .hide-UI #controls  */{
@@ -1160,7 +1160,7 @@ dl.infos dd span {
 .opening .satelite,
 .opening .ring,
 .opening .infos,
-.opening h1,
+.opening h4,
 .opening #main-nav,
 .opening dl.infos,
 .opening #controls {
@@ -1173,14 +1173,14 @@ dl.infos dd span {
   transition-delay: 0s;
   -webkit-transition-delay: 0s; }
 
-h1, #main-nav, #controls {
+h4, #main-nav, #controls {
   transition-property: opacity, margin;
   transition-duration: .8s;
   transition-timing-function: ease-in-out;
   -webkit-transition-duration: .8s;
   -webkit-transition-timing-function: ease-in-out; }
 
-h1 {
+h4 {
   transition-delay: .35s;
   -webkit-transition-delay: .35s; }
 

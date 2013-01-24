@@ -122,16 +122,16 @@ get_header();
         $("#main-nav a").hover(function(e) {
           var ref = $(this).parent().attr("id");
           solarsys.removeClass().addClass(nav_map[ref]);
-          $(this).parent().parent().find('a').removeClass('active');
-          $(this).addClass('active');
+          //$(this).parent().parent().find('a').removeClass('active');
+          //$(this).addClass('active');
         });
 
         $(".planet a").hover(function(e) {
           var ref = $(this).parent().parent().parent().attr("id");
-          console.log(ref);
-          console.log(nav_map[ref]);
+          //console.log(ref);
+          //console.log(nav_map[ref]);
           solarsys.removeClass().addClass(ref);
-          $(this).parent().parent().find('a').removeClass('active');
+          //$(this).parent().parent().find('a').removeClass('active');
         });        
 
         init();
