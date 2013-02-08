@@ -1247,4 +1247,4 @@ h4 {
   #universe {
     font-size: 100%; } }
 
-    #header, #main-nav { background: transparent; }
+    #header, #main-nav { background: transparent; position:fixed; }
