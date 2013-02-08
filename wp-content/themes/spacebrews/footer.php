@@ -6,21 +6,28 @@
 ?>
 	</div>
 
-    <!-- <div id="data">
-      <a class="homepage" title="homepage" href="/">Home</a>
-      <a class="about" title="About" href="/about-us/">About</a>
-      <a class="spacebrews" title="The Spacebrews" href="/the-spacebrews/">The Spacebrews</a>
-      <a class="blog" title="Blog" href="/blog/">Blog</a>
-      <a class="store" title="Store" href="/store/">Store</a>
-      <a class="contact" title="Contact Us" href="/contact/">Contact</a>
-    </div> -->
+  
+  <div id="main-nav">
+    <?php wp_nav_menu( array( 
+    	'theme_location' => 'header-menu',
+    	'sort_column' => 'menu_order',
+    	'container' => false,
+    	'fallback_cb' => 'menu_fallback' 
+    ) ); ?>
+  </div>
+  <script type="text/javascript">
 
-	<?php wp_nav_menu( array( 
-		'theme_location' => 'header-menu',
-		'sort_column' => 'menu_order',
-		'container_id' => 'main-nav',
-		'fallback_cb' => 'menu_fallback' 
-	) ); ?>
+  var _gaq = _gaq || [];
+  _gaq.push(['_setAccount', 'UA-9709827-3']);
+  _gaq.push(['_trackPageview']);
+
+  (function() {
+    var ga = document.createElement('script'); ga.type = 'text/javascript'; ga.async = true;
+    ga.src = ('https:' == document.location.protocol ? 'https://ssl' : 'http://www') + '.google-analytics.com/ga.js';
+    var s = document.getElementsByTagName('script')[0]; s.parentNode.insertBefore(ga, s);
+  })();
+
+  </script>
 	<?php wp_footer(); ?>
   </body>
 </html>
