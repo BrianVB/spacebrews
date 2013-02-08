@@ -8,34 +8,48 @@
 Register the Sidebars
 */
 if ( function_exists('register_sidebar') ) {
-	register_sidebar(array(
-		'name' => 'Page Sidebar',
-		'before_widget' => '<li id="%1$s" class="widget %2$s">',
-		'after_widget' => '</li>',
+  register_sidebar(array(
+    'name' => 'About Sidebar',               
+    'before_widget' => '<div id="%1$s" class="widget %2$s">',
+    'after_widget' => '</div>',
+    'before_title' => '<h2 class="widgettitle">',
+    'after_title' => '</h2>',
+  )); 	
+  register_sidebar(array(
+		'name' => 'Beer Sidebar',
+		'before_widget' => '<div id="%1$s" class="widget %2$s">',
+		'after_widget' => '</div>',
 		'before_title' => '<h2 class="widgettitle">',
 		'after_title' => '</h2>',
 	));
 	register_sidebar(array(
 		'name' => 'Post Sidebar',						   
-		'before_widget' => '<li id="%1$s" class="widget %2$s">',
-		'after_widget' => '</li>',
+		'before_widget' => '<div id="%1$s" class="widget %2$s">',
+		'after_widget' => '</div>',
 		'before_title' => '<h2 class="widgettitle">',
 		'after_title' => '</h2>',
 	));
 	register_sidebar(array(
 		'name' => 'Blog Sidebar',						   
-		'before_widget' => '<li id="%1$s" class="widget %2$s">',
-		'after_widget' => '</li>',
+		'before_widget' => '<div id="%1$s" class="widget %2$s">',
+		'after_widget' => '</div>',
 		'before_title' => '<h2 class="widgettitle">',
 		'after_title' => '</h2>',
 	));
-	register_sidebar(array(
-		'name' => 'Default Sidebar',						   
-		'before_widget' => '<li id="%1$s" class="widget %2$s">',
-		'after_widget' => '</li>',
-		'before_title' => '<h2 class="widgettitle">',
-		'after_title' => '</h2>',
-	));
+  register_sidebar(array(
+    'name' => 'Merch Sidebar',               
+    'before_widget' => '<div id="%1$s" class="widget %2$s">',
+    'after_widget' => '</div>',
+    'before_title' => '<h2 class="widgettitle">',
+    'after_title' => '</h2>',
+  ));
+  register_sidebar(array(
+    'name' => 'Contact Sidebar',               
+    'before_widget' => '<div id="%1$s" class="widget %2$s">',
+    'after_widget' => '</div>',
+    'before_title' => '<h2 class="widgettitle">',
+    'after_title' => '</h2>',
+  )); 
 }
 /**
 	End Registering the Sidebars
@@ -127,9 +141,13 @@ function sidebar_details(){
 	if(!$sidebar['name']){
 		if(is_page($post->ID)){
 			$sidebar['name'] = 'Page Sidebar'; 
-		} if(is_single($post->ID) || is_home($post->ID)){
-			$sidebar['name'] = 'Blog Sidebar';
-		} else {
+		} else if('brew' == get_post_type($post->ID)){
+      $sidebar['name'] = 'Beer Sidebar';
+    } else if(is_single($post->ID)){
+      $sidebar['name'] = 'Post Sidebar';
+    } else if(is_home($post->ID)){
+      $sidebar['name'] = 'Blog Sidebar';
+    } else {
 			$sidebar['name'] = 'Default Sidebar';
 		}
 	}
