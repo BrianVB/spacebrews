@@ -24,7 +24,6 @@
 </head>
 
 <body <?php body_class(); ?>>
-
 	<div id="header">
 	  <h4>Space Craft Brewing Company</h4>
 	</div>
