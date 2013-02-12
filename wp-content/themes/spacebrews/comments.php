@@ -26,7 +26,7 @@
 	</div>
 
 	<ol class="commentlist">
-	<?php wp_list_comments('callback=vbf_comment'); ?>
+	<?php wp_list_comments(); ?>
 	</ol>
 
 	<div class="navigation">

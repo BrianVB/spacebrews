@@ -19,19 +19,16 @@ get_header();
             </div>
     
             <div <?php post_class() ?> id="post-<?php the_ID(); ?>">
-                <h2><?php the_title(); ?></h2>
-                <small><?php the_time('l, F jS, Y') ?></small>
+                <h2 class="title post-title"><?php the_title(); ?></h2>
+                <small class="post-date"><?php the_time('l, F jS, Y') ?></small>
                 <div class="entry">
                     <?php the_content('<p class="serif">Read the rest of this entry &raquo;</p>'); ?>
     
                     <?php wp_link_pages(array('before' => '<p><strong>Pages:</strong> ', 'after' => '</p>', 'next_or_number' => 'number')); ?>
                     <?php the_tags( '<p>Tags: ', ', ', '</p>'); ?>
     
-                    <p class="postmetadata alt">
-                        <small>
-                            This entry is filed under <?php the_category(', ') ?>.
-                            <?php edit_post_link('Edit this entry','','.'); ?>
-                        </small>
+                    <p class="postmetadata alt"> 
+                        This entry is filed under <?php the_category(', ') ?>. <?php edit_post_link('Edit this entry','','.'); ?>
                     </p>
     
                 </div>

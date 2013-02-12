@@ -56,6 +56,21 @@ a, a:visited {
   text-decoration:none;
 }
 
+textarea, input, select{
+  width:98%;
+  padding: 1%;
+  margin-bottom:5px; }
+
+input, select{
+  height: 20px; }  
+
+input[type="submit"]{
+  height: 35px; }    
+
+p{
+  margin-bottom:20px;
+  line-height:1.2; }
+
 #header, #main-nav {
   background: rgba(0, 0, 0, 0.8); }
 
@@ -166,3 +181,20 @@ body {
 
 #form-hp{
   display:none; }
+
+.title{
+  font-size: 1.5em;}
+
+.page-title{
+  margin-bottom:15px;}
+
+.post-date{
+  display:block;
+  margin-bottom:10px; }
+
+.postmetadata{
+  font-size:.7em;}
+
+.sidebar .menu-item{
+  font-size:1.2em;
+  margin-bottom:15px ;}
