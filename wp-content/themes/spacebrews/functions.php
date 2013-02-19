@@ -413,10 +413,52 @@ function sb_body_classes($classes) {
 
 add_action( 'wp_enqueue_scripts', 'sb_add_stylesheets' );
 function sb_add_stylesheets() {
-    if(is_front_page()){
-    	wp_register_style( 'solar-system-style', '/wp-content/themes/spacebrews/solar-system.css');
-    	wp_enqueue_style( 'solar-system-style' );
-    }
+  if(is_front_page()){
+  	wp_register_style( 'solar-system-style', '/wp-content/themes/spacebrews/solar-system.css');
+  	wp_enqueue_style( 'solar-system-style' );
+  }
 }
 
+/**
+ * Custom output of comments for Spacebrews
+ * @since 2.7.0
+ *
+ * @param object $comment Comment data object.
+ * @param int $depth Depth of comment in reference to parents.
+ * @param array $args
+ */
+function spacebrews_comment( $comment, $args, $depth ) {
+  $GLOBALS['comment'] = $comment;
+
+  extract($args, EXTR_SKIP);
+?>
+  <div <?php comment_class(empty( $args['has_children'] ) ? '' : 'parent') ?> id="comment-<?php comment_ID() ?>">
+
+  <div class="clearfix">
+    <div class="comment-author vcard grid_1">
+    <?php if ($args['avatar_size'] != 0) echo get_avatar( $comment, $args['avatar_size'] ); ?>
+    <?php printf(__('<cite class="fn">%s</cite>:'), get_comment_author_link()) ?>
+    </div>
+    <div class="comment-bubble">
+    <?php if ($comment->comment_approved == '0') : ?>
+      <em class="comment-awaiting-moderation"><?php _e('Your comment is awaiting moderation.') ?></em>
+      <br />
+    <?php endif; ?>
+
+      <div class="comment-meta commentmetadata"><a href="<?php echo htmlspecialchars( get_comment_link( $comment->comment_ID ) ) ?>">
+              <?php
+                      /* translators: 1: date, 2: time */
+                      printf( __('%1$s at %2$s'), get_comment_date(),  get_comment_time()) ?></a><?php edit_comment_link(__('(Edit)'),'&nbsp;&nbsp;','' );
+              ?>
+      </div>
+
+      <?php comment_text() ?>
+
+      <div class="reply">
+      <?php comment_reply_link(array_merge( $args, array('add_below' => $add_below, 'depth' => $depth, 'max_depth' => $args['max_depth']))) ?>
+      </div>
+    </div>
+  </div>
+<?php
+}
 ?>

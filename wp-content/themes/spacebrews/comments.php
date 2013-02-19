@@ -26,7 +26,7 @@
 	</div>
 
 	<ol class="commentlist">
-	<?php wp_list_comments(); ?>
+	<?php wp_list_comments('callback=spacebrews_comment'); ?>
 	</ol>
 
 	<div class="navigation">
@@ -68,19 +68,14 @@
 
 <?php else : ?>
 
-<p><input type="text" name="author" id="author" value="<?php echo esc_attr($comment_author); ?>" size="22" tabindex="1" <?php if ($req) echo "aria-required='true'"; ?> />
-<label for="author"><small>Name <?php if ($req) echo "(required)"; ?></small></label></p>
-
-<p><input type="text" name="email" id="email" value="<?php echo esc_attr($comment_author_email); ?>" size="22" tabindex="2" <?php if ($req) echo "aria-required='true'"; ?> />
-<label for="email"><small>Mail (will not be published) <?php if ($req) echo "(required)"; ?></small></label></p>
-
+<input type="text" name="author" id="author" value="<?php echo esc_attr($comment_author); ?>" size="22" tabindex="1" <?php if ($req) echo "aria-required='true'"; ?> placeholder="Enter your name"/>
+<input type="text" name="email" id="email" value="<?php echo esc_attr($comment_author_email); ?>" size="22" tabindex="2" <?php if ($req) echo "aria-required='true'"; ?> placeholder="Enter your email address" />
 <?php endif; ?>
 
-<p><textarea name="comment" id="comment" tabindex="4"></textarea></p>
+<textarea name="comment" id="comment" placeholder="Enter your comment" tabindex="4"></textarea>
 
-<p><input name="submit" type="submit" id="submit" tabindex="5" value="Submit Comment" />
+<input name="submit" type="submit" id="submit" tabindex="5" value="Submit Comment" />
 <?php comment_id_fields(); ?>
-</p>
 <?php do_action('comment_form', $post->ID); ?>
 
 </form>

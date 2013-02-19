@@ -59,13 +59,47 @@ a, a:visited {
 textarea, input, select{
   width:98%;
   padding: 1%;
-  margin-bottom:5px; }
+  margin-bottom:5px; 
+  background-color: rgba(83, 246, 249, 0.7);
+  border-color: rgba(83, 246, 249, 0.7);
+  border-radius: 3px;
+  border-width:3px;
+  font-family: 'OCR A Std', 'Open Sans', sans-serif; 
+  color:#333; }
+
+::-webkit-input-placeholder{
+  color:#333; }
+:-moz-placeholder { 
+  color:#333; }
+::-moz-placeholder {  
+  color:#333; }
+:-ms-input-placeholder {  
+  color:#333; }
+
+textarea{
+  border-style:inset;
+  height:120px; 
+  font-size:1em; }
+
+textarea:focus, input:focus, select:focus{
+  border-color: rgba(54, 217, 61, 0.7); }
 
 input, select{
   height: 20px; }  
 
 input[type="submit"]{
   height: 35px; }    
+
+.failure, .success{
+  margin-bottom:10px;
+  text-align:center;
+  padding:10px 0; }
+
+.failure{
+  background-color:rgba(255,0,0,0.4); }
+
+.success{
+  background-color:rgba(54, 217, 61, 0.4); }
 
 p{
   margin-bottom:20px;
@@ -86,8 +120,7 @@ p{
 #header h4{
 font-family:"DymaxionScriptRegular", "Open Sans", sans-serif;
 font-size:3em;
-text-align:center;
-}
+text-align:center; }
 
 #main-nav a{
   color: rgba(255, 255, 255, 0.6);
@@ -167,12 +200,14 @@ body {
     border-style: solid;
     border-width: 0px;
     box-shadow: 0 0 8px #53D8F9 inset, 0 0 8px #53D8F9;
-    height:100%; 
     overflow:auto;
     box-sizing:border-box;
     -moz-box-sizing:border-box; 
     -webkit-box-sizing:border-box; }
 
+#page-cotainer #page-container .grid_8{
+  height:100%; }
+  
 #page-container{
   padding: 20px 0;   }
 
@@ -198,3 +233,51 @@ body {
 .sidebar .menu-item{
   font-size:1.2em;
   margin-bottom:15px ;}
+
+#blog_sidebar > div, #post_sidebar > div {
+  margin-bottom:15px;}
+
+#blog_sidebar h2, #post_sidebar h2{
+  margin-bottom:5px;}
+
+.commentlist .grid_1{
+  text-align:center; }
+
+.comment-bubble{
+  float:left; 
+  background: none repeat scroll 0 0 #FFFFFF;
+  border: 2px solid #D0CFCF;
+  border-radius: 10px;
+  color: #333333;
+  font-size: .75em;
+  margin:0 0 15px;
+  padding: 5px 10px;
+  position: relative; }
+
+.comment-bubble:before{
+  border-color: transparent #FFFFFF;
+  border-style: solid;
+  border-width: 10px 15px 10px 0;
+  content: "";
+  display: block;
+  left: -15px;
+  position: absolute;
+  width: 0; }
+
+.comment-meta{
+  margin-bottom:5px; }
+
+.commentlist .children{
+  margin-left:30px; }
+
+.widget_nav_menu{
+  padding-left:20px; }
+
+.sidebar .menu-item{
+  position:relative; }
+
+.sidebar .current-menu-item:before{
+  color:#00CCFF;
+  content:"\00bb";
+  position:absolute; 
+  left:-20px; }
