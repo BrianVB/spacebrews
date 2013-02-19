@@ -113,7 +113,7 @@ get_header();
         nav_map['menu-item-52'] = 'contact';
 
         var init = function() {
-          body.removeClass('view-2D opening').addClass("view-3D").delay(2000).queue(function() {
+          body.removeClass('view-2D opening').addClass("view-3D").queue(function() {
             $(this).removeClass('hide-UI').addClass("set-speed");
             $(this).dequeue();
           });
